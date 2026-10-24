@@ -1,0 +1,31 @@
+---
+- name: 批量主机环境初始化
+  hosts: web_group
+  become: true
+  tasks:
+    - name: 更新apt软件源缓存
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: 安装基础工具包
+      apt:
+        name:
+          - vim
+          - curl
+          - wget
+          - chrony
+        state: present
+
+    - name: 设置系统时间同步chrony开机自启并启动
+      service:
+        name: chrony
+        state: started
+        enabled: true
+
+    - name: 设置最大打开文件数
+      ansible.builtin.sysctl:
+        name: fs.file‑max
+        value: 65535
+        state: present
+      ignore_errors: yes

@@ -1,0 +1,21 @@
+---
+- name: 批量主机健康状态巡检
+  hosts: web_group
+  gather_facts: true
+  tasks:
+    - name: 创建巡检报告目录
+      ansible.builtin.file:
+        path: ../report
+        state: directory
+        mode: '0755'
+      delegate_to: localhost
+    - name: 收集主机基础信息，输出巡检报告
+      copy:
+        content: |
+          主机名: {{ ansible_hostname }}
+          IP地址: {{ ansible_default_ipv4.address }}
+          系统版本: {{ ansible_distribution }} {{ ansible_distribution_version }}
+          总内存: {{ ansible_memtotal_mb }} MB
+          CPU核心数: {{ ansible_processor_vcpus }}
+        dest: ../report/{{ inventory_hostname }}_report.txt
+      delegate_to: localhost

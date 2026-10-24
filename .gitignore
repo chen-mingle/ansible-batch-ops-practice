@@ -1,0 +1,5 @@
+# ansible缓存、报告
+report/*.txt
+*.retry
+__pycache__/
+.DS_Store

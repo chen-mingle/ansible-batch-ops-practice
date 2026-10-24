@@ -1,0 +1,10 @@
+---
+- name: 批量分发文件到目标主机
+  hosts: web_group
+  become: true
+  tasks:
+    - name: 推送motd登录提示文件
+      copy:
+        src: ../files/motd.txt
+        dest: /etc/motd
+        mode: '0644'
