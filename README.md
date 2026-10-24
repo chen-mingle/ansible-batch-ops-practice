@@ -75,12 +75,6 @@ ansible-playbook playbooks/health_check.yml -K
 1. WSL2 精简内核，不存在 `fs.file-max`，直接执行 sysctl 模块会报错，添加 `ignore_errors: yes`，保障整条初始化流水线正常跑完
 2. 巡检报告需要输出到控制机本地，默认 Ansible 在远端主机执行任务，增加 `delegate_to: localhost` 委托至本地执行文件创建、写入逻辑，解决路径与权限问题
 
-## 项目截图
-
-![init_env执行结果](./imgs/init_env.png)
-![file_dist执行结果](./imgs\file_dist.png)
-![health_check执行结果](./imgs\file_dist.png)
-
 - init_env.yml 执行结果
 - file_dist.yml 执行结果
 - health_check.yml 执行结果
