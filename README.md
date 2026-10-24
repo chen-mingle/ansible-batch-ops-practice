@@ -77,7 +77,9 @@ ansible-playbook playbooks/health_check.yml -K
 
 ## 项目截图
 
-（在这里依次粘贴三张截图）
+![init_env执行结果](./imgs/init_env.png)
+![file_dist执行结果](./imgs\file_dist.png)
+![health_check执行结果](./imgs\file_dist.png)
 
 - init_env.yml 执行结果
 - file_dist.yml 执行结果
